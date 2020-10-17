@@ -67,7 +67,7 @@
     else if (submit.equals("register")){response.sendRedirect("register");}
     else {
     %>
-    <jsp:useBean id="login" class="jsp.Login" />
+    <jsp:useBean id="login" class="controller.Login" />
     <% 
         if(login.isLogin(username, password.toCharArray()))
         { 
