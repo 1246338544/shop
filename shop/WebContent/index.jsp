@@ -82,7 +82,7 @@
     </script>
     <% 
         login.close();
-    }
+        }
     }
     %>
     

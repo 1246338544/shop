@@ -1,4 +1,4 @@
-<%@page import="controller.Product"%>
+<%@page import="service.Product"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -25,17 +25,12 @@
 
 </head>
 <body>
-	<jsp:useBean id="product" class="controller.Product"></jsp:useBean>
+	<jsp:useBean id="product" class="service.Product"></jsp:useBean>
 	<%!Integer offset = 0;
 	Integer limit = 10;%>
 	<%
 		ResultSet rs = null;
-	String search = request.getParameter("search");
-	if (search == null) {
-		rs = product.getProduct(offset, limit);
-	} else {
-		rs = product.getProduct(offset, limit, search);
-	}
+	//TODO 给rs赋值，搜索功能的改进
 	%>
 	<header><jsp:include page="/header.jsp"></jsp:include></header>
 	<form>
@@ -77,13 +72,21 @@
 	</div>
 	<%
 		if (request.getParameter("id") != null) {
-		@SuppressWarnings("unchecked")
-		LinkedList<Product> list = (LinkedList<Product>) session.getAttribute("shopList");
+			Object list = session.getAttribute("shopList");
+		    LinkedList <Product> shopList = new LinkedList<>();
+		//LinkedList<Product> list = (LinkedList<Product>) session.getAttribute("shopList");
 		if (list == null)
 			list = new LinkedList<>();
+		else {
+			for (Object obj : (LinkedList<?>) list) {
+				if (obj instanceof Product)
+					shopList.add((Product) obj);
+				else throw new Exception("未知错误，购物车页面出错");
+			}
+		}
 		Product Product = new Product(Integer.valueOf(request.getParameter("id")), request.getParameter("name"),
 		Float.valueOf(request.getParameter("price")));
-		list.add(Product);
+		shopList.add(Product);
 		session.setAttribute("shopList", list);
 	}
 	%>

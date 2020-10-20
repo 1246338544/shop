@@ -1,4 +1,4 @@
-<%@page import="controller.Product"%>
+<%@page import="service.Product"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; chaproductvoet=UTF-8"
@@ -13,7 +13,7 @@
 		<%
 			
 		%>
-	<jsp:useBean id="product" class="controller.Product"></jsp:useBean>
+	<jsp:useBean id="product" class="service.Product"></jsp:useBean>
 	<%!Integer offset = 0;
 	Integer limit = 10;%>
 	<%
