@@ -6,14 +6,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+body {
+	width: 1190px;
+	height: 400px;
+	margin: auto;
+}
+</style>
 <meta charset="UTF-8">
 <title>购物车</title>
 </head>
 <body>
-		<%
-			
-		%>
-	<jsp:useBean id="product" class="service.Product"></jsp:useBean>
+
 	<%!Integer offset = 0;
 	Integer limit = 10;%>
 	<%
@@ -24,8 +28,10 @@
 		session.setAttribute("shopList", shopList);
 	
 	for (Object obj : (LinkedList<?>) session.getAttribute("shopList")) {
-		if (obj instanceof Product)
+		if (obj instanceof Product){
+			if(((Product)obj).getId().equals(Integer.valueOf(deleteItem)))break;
 			shopList.add((Product) obj);
+		}
 		else throw new Exception("未知错误，购物车页面出错");
 	}
 	%>
@@ -33,31 +39,31 @@
 
 	<div>
 		<h5>商品列表</h5>
-		<form>
+		<form action="" method="post">
 			<ul class="product-list">
 				<%
-					for (Product Product : shopList) {
+					for (Product product : shopList) {
 				%>
 				<li>
 
 					<table>
 						<tr>
 							<td>商品名</td>
-							<td><%=Product.getName()%><input type="hidden" name="name"
-								value="<%=Product.getName()%>"></td>
+							<td><%=product.getName()%><input type="hidden" name="name"
+								value="<%=product.getName()%>"></td>
 						</tr>
 						<tr>
 							<td>商品价格</td>
-							<td><%=Product.getPrice()%><input type="hidden"
-								name="price" value="<%=Product.getPrice()%>"></td>
+							<td><%=product.getPrice()%><input type="hidden"
+								name="price" value="<%=product.getPrice()%>"></td>
 						</tr>
 						<tr>
 							<td>数量</td>
 							<td><input type="number"
-								value=<%=Product.getNumberOfProduct()%>></td>
+								value=<%=product.getNumberOfProduct()%>></td>
 						</tr>
 						<tr>
-						     <td><button type="submit" form="deleteItem" value="<%=Product.getId() %>" name="deleteItem">删除商品</button></td>
+						     <td><button type="submit" form="deleteItem" value="<%=product.getId() %>" name="deleteItem">删除商品</button></td>
 						</tr>
 					</table>
 

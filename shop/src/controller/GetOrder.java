@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Product
+ * Servlet implementation class GetOrder
  */
-@WebServlet("/Product")
-public class Product extends HttpServlet {
+@WebServlet("/GetOrder")
+public class GetOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Product() {
+    public GetOrder() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class Product extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO doGet
+		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -35,11 +35,9 @@ public class Product extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.getSession().getAttribute("shopList");
+		request.getSession().getAttribute("");
 		doGet(request, response);
-		request.getParameter("");
-		request.getSession();
-		request.getParameterValues("");
-		response.sendRedirect("/shop/shop/");
 	}
 
 }
