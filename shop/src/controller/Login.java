@@ -20,13 +20,18 @@ public class Login {
 		ps.setString(2, String.valueOf(password));
 		ResultSet rs = ps.executeQuery();
 		if(rs.next())
-		if(rs.getInt(1) == 1) return true;
 		
+		if(rs.getInt(1) == 1) {
+			if(!this.connection.isClosed())
+				connection.close();
+			return true;
+		}
+		if(!this.connection.isClosed())
+			connection.close();
 		return false;
 	}
-	public void close() throws SQLException {
-		if(this.connection.isClosed()) return;
-		connection.close();
-	}
 	
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		new Login();
+	}
 }

@@ -1,4 +1,4 @@
-<%@page import="controller.Product"%>
+<%@page import="service.Product"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; chaproductvoet=UTF-8"
