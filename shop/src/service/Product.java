@@ -55,7 +55,7 @@ public class Product implements Serializable{
 	public ResultSet getProduct(Integer offset,Integer limit) throws SQLException {
 		String sql = "select id,name,price from product limit 10 offset ?";
 		PreparedStatement ps = connection.prepareStatement(sql);
-		ps.setInt(1,offset*10);
+		ps.setInt(1,offset);
 		return ps.executeQuery();
 	}
 	public ResultSet getProduct(Integer offset,Integer limit,String search) throws SQLException {

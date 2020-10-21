@@ -20,13 +20,10 @@ public class Login {
 		ps.setString(2, String.valueOf(password));
 		ResultSet rs = ps.executeQuery();
 		if(rs.next())
-		if(rs.getInt(1) == 1) return true;
-		
-		return false;
-	}
-	public void close() throws SQLException {
-		if(this.connection.isClosed()) return;
+		if(this.connection.isClosed())
 		connection.close();
+		if(rs.getInt(1) == 1) return true;
+		return false;
 	}
 	
 }

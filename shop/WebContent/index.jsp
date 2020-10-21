@@ -71,7 +71,7 @@
     <% 
         if(login.isLogin(username, password.toCharArray()))
         { 
-        	login.close();
+        	
     	    response.sendRedirect("welcome"); 
     	}
         else
@@ -81,7 +81,7 @@
         alert("请检查你的的用户名和密码")
     </script>
     <% 
-        login.close();
+    	
         }
     }
     %>

@@ -26,10 +26,14 @@
 </head>
 <body>
 	<jsp:useBean id="product" class="service.Product"></jsp:useBean>
-	<%!Integer offset = 0;
+	<%
+	Integer offset = 0;
 	Integer limit = 10;%>
 	<%
+		String search = request.getParameter("search");
 		ResultSet rs = null;
+		if (search == null) product.getProduct(offset, limit);
+		else product.getProduct(offset, limit, search);
 	//TODO 给rs赋值，搜索功能的改进
 	%>
 	<header><jsp:include page="/header.jsp"></jsp:include></header>
@@ -84,8 +88,10 @@
 				else throw new Exception("未知错误，购物车页面出错");
 			}
 		}
-		Product Product = new Product(Integer.valueOf(request.getParameter("id")), request.getParameter("name"),
-		Float.valueOf(request.getParameter("price")));
+		Product Product = new Product(
+				Integer.valueOf(request.getParameter("id")),
+				request.getParameter("name"),
+				Float.valueOf(request.getParameter("price")));
 		shopList.add(Product);
 		session.setAttribute("shopList", list);
 	}
