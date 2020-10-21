@@ -28,8 +28,10 @@ body {
 		session.setAttribute("shopList", shopList);
 	
 	for (Object obj : (LinkedList<?>) session.getAttribute("shopList")) {
-		if (obj instanceof Product)
+		if (obj instanceof Product){
+			if(((Product)obj).getId().equals(Integer.valueOf(deleteItem)))break;
 			shopList.add((Product) obj);
+		}
 		else throw new Exception("未知错误，购物车页面出错");
 	}
 	%>
@@ -37,7 +39,7 @@ body {
 
 	<div>
 		<h5>商品列表</h5>
-		<form>
+		<form action="" method="post">
 			<ul class="product-list">
 				<%
 					for (Product product : shopList) {
