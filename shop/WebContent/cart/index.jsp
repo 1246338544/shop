@@ -13,7 +13,7 @@
 		<%
 			
 		%>
-	<jsp:useBean id="product" class="controller.Product"></jsp:useBean>
+	<jsp:useBean id="product" class="service.Product"></jsp:useBean>
 	<%!Integer offset = 0;
 	Integer limit = 10;%>
 	<%
