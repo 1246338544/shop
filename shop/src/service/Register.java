@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import controller.Database;
 
 public class Register {
-	public static String check(String username, char[] password, char[] repeatPassword) throws SQLException, ClassNotFoundException {
+	public static Result check(String username, char[] password, char[] repeatPassword) throws SQLException, ClassNotFoundException {
 		if (username.isBlank() || password.length == 0 || repeatPassword.length == 0) {
-			return "用户名和密码不能为空或者只含有空格";
+			return new "用户名和密码不能为空或者只含有空格";
 		}
 		if (password.length != repeatPassword.length) return "密码长度不一致";
 		for (int i = 0; i < password.length; i++) {
@@ -35,5 +35,13 @@ public class Register {
 			con.close();
 		}
 
+	}
+	class Result{
+		String message;
+		boolean result;
+		Result(String message,boolean result){
+			this.message = message;
+			this.result = result;
+		}
 	}
 }
