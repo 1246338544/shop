@@ -10,12 +10,12 @@ import controller.Database;
 public class Register {
 	public static Result check(String username, char[] password, char[] repeatPassword) throws SQLException, ClassNotFoundException {
 		if (username.isBlank() || password.length == 0 || repeatPassword.length == 0) {
-			return new "用户名和密码不能为空或者只含有空格";
+			return new Result("用户名和密码不能为空或者只含有空格",false);
 		}
-		if (password.length != repeatPassword.length) return "密码长度不一致";
+		if (password.length != repeatPassword.length) return new Result("密码长度不一致",false);
 		for (int i = 0; i < password.length; i++) {
 			if (password[i] != repeatPassword[i])
-				return "密码不一致";
+				return new Result("密码不一致",false);
 		}
 
 		Connection con = Database.getConnection();
@@ -25,23 +25,24 @@ public class Register {
 		ps.setString(2, String.copyValueOf(password));
 		try {
 			if (ps.execute()) {
-				return "注册成功<a href='/shop/shop/'>点击此处返回商城</a>";
+				return new Result("注册成功<a href='/shop/shop/'>点击此处返回商城</a>",true);
 			} else {
-				return "用户名重名，请更换用户名";
+				return new Result("用户名重名，请更换用户名",false);
 			}
 		}catch(java.sql.SQLIntegrityConstraintViolationException e) {
-			return "用户名重名，请更换用户名";
+			return new Result("用户名重名，请更换用户名",false);
 		}finally {
 			con.close();
 		}
 
 	}
-	class Result{
-		String message;
-		boolean result;
-		Result(String message,boolean result){
-			this.message = message;
-			this.result = result;
-		}
+
+}
+class Result{
+	String message;
+	boolean result;
+	public Result(String message,boolean result){
+		this.message = message;
+		this.result = result;
 	}
 }

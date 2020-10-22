@@ -28,8 +28,10 @@ body {
 <body>
 	<jsp:useBean id="product" class="service.Product"></jsp:useBean>
 	<%
+
 		Integer offset = 0;
 	Integer limit = 10;
+
 	%>
 	<%
 		String search = request.getParameter("search");

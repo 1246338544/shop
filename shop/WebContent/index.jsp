@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -81,10 +82,11 @@
         alert("请检查你的的用户名和密码")
     </script>
     <% 
-    	
+
         }
     }
     %>
+    <%=(session.getLastAccessedTime() - session.getCreationTime())/1000 + "s" %>
     
 </body>
 </html>

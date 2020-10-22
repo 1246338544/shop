@@ -59,7 +59,7 @@ body {
 						</tr>
 						<tr>
 							<td>数量</td>
-							<td><input type="number"
+							<td><input type="number" min="1" max="200"
 								value=<%=product.getNumberOfProduct()%>></td>
 						</tr>
 						<tr>
