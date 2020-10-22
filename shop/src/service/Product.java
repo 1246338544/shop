@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import controller.Config;
+import controller.Database;
 
 public class Product implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -49,8 +49,8 @@ public class Product implements Serializable{
 	}
 	private Connection connection = null;
 	public Product() throws SQLException, ClassNotFoundException {
-	   java.lang.Class.forName(Config.DRIVE);
-	   this.connection = DriverManager.getConnection(Config.URL, Config.USERNAME, Config.PASSWORD);	
+	   java.lang.Class.forName(Database.DRIVE);
+	   this.connection = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);	
 	}
 	public ResultSet getProduct(Integer offset,Integer limit) throws SQLException {
 		String sql = "select id,name,price from product limit 10 offset ?";

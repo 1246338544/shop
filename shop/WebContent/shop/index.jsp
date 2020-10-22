@@ -29,7 +29,7 @@ body {
 	<jsp:useBean id="product" class="service.Product"></jsp:useBean>
 	<%
 		Integer offset = 0;
-	    Integer limit = 10;
+	Integer limit = 10;
 	%>
 	<%
 		String search = request.getParameter("search");
@@ -38,7 +38,6 @@ body {
 		rs = product.getProduct(offset, limit);
 	else
 		rs = product.getProduct(offset, limit, search);
-
 	%>
 	<header><jsp:include page="/header.jsp"></jsp:include></header>
 	<form>
@@ -52,7 +51,7 @@ body {
 				while (rs.next()) {
 			%>
 			<li>
-				<form>
+				<form method="get">
 					<table>
 						<tr>
 							<td>商品名</td>
@@ -79,22 +78,23 @@ body {
 		</ul>
 	</div>
 	<%
-		
 		Object list = session.getAttribute("shopList");
-		LinkedList<Product> shopList = new LinkedList<>();
-		if(list != null){
+	LinkedList<Product> shopList = new LinkedList<>();
+	if (list != null && request.getParameter("id")!=null) {
 		for (Object obj : (LinkedList<?>) list) {
 			if (obj instanceof Product) {
 		shopList.add((Product) obj);
-			} else
+			} else {
 		throw new Exception("未知错误，购物车页面出错");
+			}
 		}
 
 		Product Product = new Product(Integer.valueOf(request.getParameter("id")), request.getParameter("name"),
 		Float.valueOf(request.getParameter("price")));
-		if(!shopList.contains(Product)) shopList.add(Product);
-		session.setAttribute("shopList", shopList);
-		}
+		if (!shopList.contains(Product))
+			shopList.add(Product);
+	}
+	session.setAttribute("shopList", shopList);
 	%>
 
 
