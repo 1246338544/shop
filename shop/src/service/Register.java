@@ -10,12 +10,12 @@ import controller.Database;
 public class Register {
 	public static Result check(String username, char[] password, char[] repeatPassword) throws SQLException, ClassNotFoundException {
 		if (username.isBlank() || password.length == 0 || repeatPassword.length == 0) {
-			return new Result("ÓÃ»§ÃûºÍÃÜÂë²»ÄÜÎª¿Õ»òÕßÖ»º¬ÓĞ¿Õ¸ñ",false);
+			return new Result("ç”¨æˆ·åå’Œå¯†ç ä¸èƒ½ä¸ºç©ºæˆ–è€…åªå«æœ‰ç©ºæ ¼",false);
 		}
-		if (password.length != repeatPassword.length) return new Result("ÃÜÂë³¤¶È²»Ò»ÖÂ",false);
+		if (password.length != repeatPassword.length) return new Result("å¯†ç é•¿åº¦ä¸ä¸€è‡´",false);
 		for (int i = 0; i < password.length; i++) {
 			if (password[i] != repeatPassword[i])
-				return new Result("ÃÜÂë²»Ò»ÖÂ",false);
+				return new Result("å¯†ç ä¸ä¸€è‡´",false);
 		}
 
 		Connection con = Database.getConnection();
@@ -25,12 +25,12 @@ public class Register {
 		ps.setString(2, String.copyValueOf(password));
 		try {
 			if (ps.execute()) {
-				return new Result("×¢²á³É¹¦<a href='/shop/shop/'>µã»÷´Ë´¦·µ»ØÉÌ³Ç</a>",true);
+				return new Result("æ³¨å†ŒæˆåŠŸ<a href='/shop/shop/'>ç‚¹å‡»æ­¤å¤„è¿”å›å•†åŸ</a>",true);
 			} else {
-				return new Result("ÓÃ»§ÃûÖØÃû£¬Çë¸ü»»ÓÃ»§Ãû",false);
+				return new Result("ç”¨æˆ·åé‡åï¼Œè¯·æ›´æ¢ç”¨æˆ·å",false);
 			}
 		}catch(java.sql.SQLIntegrityConstraintViolationException e) {
-			return new Result("ÓÃ»§ÃûÖØÃû£¬Çë¸ü»»ÓÃ»§Ãû",false);
+			return new Result("ç”¨æˆ·åé‡åï¼Œè¯·æ›´æ¢ç”¨æˆ·å",false);
 		}finally {
 			con.close();
 		}

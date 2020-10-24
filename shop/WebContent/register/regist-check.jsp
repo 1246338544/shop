@@ -18,7 +18,7 @@
 	String Message = Register.check(
 			request.getParameter("username"), 
 			request.getParameter("password").toCharArray(), 
-			request.getParameter("repeatPassword").toCharArray());
+			request.getParameter("repeatPassword").toCharArray()).getMessage();
 %>
 <div><%=Message%>
 
