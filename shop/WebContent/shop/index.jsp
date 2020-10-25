@@ -28,10 +28,8 @@ body {
 <body>
 	<jsp:useBean id="product" class="service.Product"></jsp:useBean>
 	<%
-
-		Integer offset = 0;
+	Integer offset = 0;
 	Integer limit = 10;
-
 	%>
 	<%
 		String search = request.getParameter("search");
@@ -41,7 +39,7 @@ body {
 	else
 		rs = product.getProduct(offset, limit, search);
 	%>
-	<header><jsp:include page="/header.jsp"></jsp:include></header>
+	<header><%@include file="/header.jsp" %></header>
 	<form>
 		<input name="search" type="search" />
 		<button type='submit'>搜索</button>

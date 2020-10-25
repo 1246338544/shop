@@ -72,7 +72,7 @@
     <% 
         if(login.isLogin(username, password.toCharArray()))
         { 
-        	
+        	session.setAttribute("username", username);
     	    response.sendRedirect("welcome"); 
     	}
         else

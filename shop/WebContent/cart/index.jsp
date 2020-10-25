@@ -35,7 +35,7 @@ body {
 		else throw new Exception("未知错误，购物车页面出错");
 	}
 	%>
-	<header><jsp:include page="/header.jsp"></jsp:include></header>
+	<header><%@ include file="../header.jsp" %></header>
 
 	<div>
 		<h5>商品列表</h5>
