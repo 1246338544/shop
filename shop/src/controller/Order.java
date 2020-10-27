@@ -1,10 +1,9 @@
-package service;
+package controller;
 
 /**
  * 
  * @author joker
  *
- * 订单的实体类，number为数量。
  */
 public class Order {
 	private Product product;

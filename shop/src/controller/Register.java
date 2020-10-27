@@ -1,4 +1,4 @@
-package service;
+package controller;
 
 
 import java.net.PasswordAuthentication;
@@ -6,9 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import entity.Result;
 
-
-import controller.Database;
 
 public class Register {
 	
@@ -28,11 +27,9 @@ public class Register {
 		ps.setString(1, username);
 		ps.setString(2, String.copyValueOf(password));
 		try {
-			if (ps.execute()) {
-				return new Result("注册成功<a href='/shop/shop/'>点击此处返回商城</a>",true);
-			} else {
-				return new Result("用户名重名，请更换用户名",false);
-			}
+			if(ps.executeUpdate()==1)
+			 return new Result("注册成功",true);
+			else return new Result("注册失败",false);
 		}catch(java.sql.SQLIntegrityConstraintViolationException e) {
 			return new Result("用户名重名，请更换用户名",false);
 		}finally {

@@ -1,14 +1,14 @@
-package service;
+package entity;
 
 public class Result{
-	String message;
+	private String message;
 	public String getMessage() {
 		return message;
 	}
 	public boolean isResult() {
 		return result;
 	}
-	boolean result;
+	private boolean result;
 	public Result(String message,boolean result){
 		this.message = message;
 		this.result = result;

@@ -21,16 +21,19 @@
 </head>
 <body>
 <% 
-    String user = (String)session.getAttribute("user");
-	if(user == null) {
-		user = "未登录";	
+    String username = (String)session.getAttribute("username");
+	if(username == null) {	
+		response.setHeader("refresh", "0;URL=../index.jsp");
+	}
+	if ("true".equals(request.getParameter("logout"))){
+		session.invalidate();
 	}
 %>
 <ul class="header">
-	<li><%= user %></li>
+	<li><%=username %></li>
 	<li><a href="../cart">购物车</a></li>
 	<li><a href="../shop">商城</a></li>
-	<li style="margin-left:75%;"><button type="submit" name="quit" value="yes">退出</button></li>
+	<li style="margin-left:75%;"><a href="/shop?logout=true"><button>退出</button></a></li>
 </ul>
 </body>
 </html>
