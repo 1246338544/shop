@@ -16,6 +16,7 @@ public class Login {
 	public boolean isLogin(String username,char[] password) throws SQLException {
 		String sql = "select count(username) from user where username=? and password=?";
 		PreparedStatement ps = connection.prepareStatement(sql);
+		if(username.length()<1||username.length()>6)return false;
 		ps.setString(1, username);
 		ps.setString(2, String.valueOf(password));
 		ResultSet rs = ps.executeQuery();

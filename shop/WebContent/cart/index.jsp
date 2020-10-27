@@ -40,7 +40,7 @@ body {
 	
 	<div>
 		<h5>商品列表</h5>
-		<form action="" method="post">
+		<form action="check.jsp" method="post">
 			<ul class="product-list">
 				<%
 					for (Product product : shopList) {
@@ -74,7 +74,6 @@ body {
 					}
 				%>
 			</ul>
-
 			<button type="submit">购买</button>
 		</form>
 		<form action="post" id="deleteItem"></form>
