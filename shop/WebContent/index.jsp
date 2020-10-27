@@ -62,7 +62,7 @@
     </form>
     <%
     String submit = request.getParameter("submit");
-    String username = request.getParameter("username");
+    String userName = request.getParameter("username");
     String password = request.getParameter("password");
     if ( submit == null);
     else if (submit.equals("register")){response.sendRedirect("register");}
@@ -70,9 +70,9 @@
     %>
     <jsp:useBean id="login" class="controller.Login" />
     <% 
-        if(login.isLogin(username, password.toCharArray()))
+        if(login.isLogin(userName, password.toCharArray()))
         { 
-        	session.setAttribute("username", username);
+        	session.setAttribute("userName", userName);
     	    response.sendRedirect("welcome"); 
     	}
         else

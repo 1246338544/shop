@@ -21,8 +21,8 @@
 </head>
 <body>
 <% 
-    String username = (String)session.getAttribute("username");
-	if(username == null) {	
+    String userName = (String)session.getAttribute("userName");
+	if(userName == null) {	
 		response.setHeader("refresh", "0;URL=../index.jsp");
 	}
 	if ("true".equals(request.getParameter("logout"))){
@@ -30,7 +30,7 @@
 	}
 %>
 <ul class="header">
-	<li><%=username %></li>
+	<li><%=userName %></li>
 	<li><a href="../cart">购物车</a></li>
 	<li><a href="../shop">商城</a></li>
 	<li style="margin-left:75%;"><a href="/shop?logout=true"><button>退出</button></a></li>

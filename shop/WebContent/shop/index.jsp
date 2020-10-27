@@ -1,3 +1,4 @@
+<%@page import="controller.Cart"%>
 <%@page import="controller.Product"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="java.sql.ResultSet"%>
@@ -32,12 +33,20 @@ body {
 	Integer limit = 10;
 	%>
 	<%
-		String search = request.getParameter("search");
+	String search = request.getParameter("search");
 	ResultSet rs = null;
 	if (search == null)
 		rs = product.getProduct(offset, limit);
 	else
 		rs = product.getProduct(offset, limit, search);
+	
+	Integer productId = Integer.valueOf(request.getParameter("id"));
+	Cart cart = new Cart();
+	cart.setProductId(productId);
+	if (session.getAttribute("userName") instanceof String)
+	{
+		cart.setUserName((String)session.getAttribute("userName"));
+	}
 	%>
 	<header><%@include file="/header.jsp" %></header>
 	<form>
@@ -51,7 +60,7 @@ body {
 				while (rs.next()) {
 			%>
 			<li>
-				<form method="get">
+				<form method="post">
 					<table>
 						<tr>
 							<td>商品名</td>
@@ -60,7 +69,7 @@ body {
 						</tr>
 						<tr>
 							<td>商品价格</td>
-							<td><%=rs.getFloat("price")%><input type="hidden"
+							<td>￥<%=rs.getFloat("price")%><input type="hidden"
 								name="price" value="<%=rs.getString("price")%>"></td>
 						</tr>
 						<tr>
@@ -77,27 +86,6 @@ body {
 
 		</ul>
 	</div>
-	<%
-		Object list = session.getAttribute("shopList");
-	LinkedList<Product> shopList = new LinkedList<>();
-	if (list != null && request.getParameter("id")!=null) {
-		for (Object obj : (LinkedList<?>) list) {
-			if (obj instanceof Product) {
-		shopList.add((Product) obj);
-			} else {
-		throw new Exception("未知错误，购物车页面出错");
-			}
-		}
-
-		Product Product = new Product(Integer.valueOf(request.getParameter("id")), request.getParameter("name"),
-		Float.valueOf(request.getParameter("price")));
-		if (!shopList.contains(Product))
-			shopList.add(Product);
-	}
-	session.setAttribute("shopList", shopList);
-	%>
-
-
 
 </body>
 </html>
