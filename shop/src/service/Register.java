@@ -1,13 +1,17 @@
 package service;
 
 
+import java.net.PasswordAuthentication;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+
+
 import controller.Database;
 
 public class Register {
+	
 	public static Result check(String username, char[] password, char[] repeatPassword) throws SQLException, ClassNotFoundException {
 		if (username.isBlank() || password.length == 0 || repeatPassword.length == 0) {
 			return new Result("用户名和密码不能为空或者只含有空格",false);
@@ -38,11 +42,4 @@ public class Register {
 	}
 
 }
-class Result{
-	String message;
-	boolean result;
-	public Result(String message,boolean result){
-		this.message = message;
-		this.result = result;
-	}
-}
+
