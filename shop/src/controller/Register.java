@@ -1,11 +1,10 @@
-package service;
+package controller;
 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import controller.Database;
 import entity.Result;
 
 public class Register {

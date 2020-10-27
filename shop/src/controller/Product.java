@@ -1,4 +1,4 @@
-package service;
+package controller;
 
 import java.io.Serializable;
 import java.sql.Connection;
@@ -6,8 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import controller.Database;
 
 public class Product implements Serializable{
 	private static final long serialVersionUID = 1L;

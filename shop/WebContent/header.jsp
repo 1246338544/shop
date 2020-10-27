@@ -22,8 +22,7 @@
 <body>
 <% 
     String username = (String)session.getAttribute("username");
-	if(username == null) {
-		username = "未登录";	
+	if(username == null) {	
 		response.setHeader("refresh", "0;URL=../index.jsp");
 	}
 	if ("true".equals(request.getParameter("logout"))){

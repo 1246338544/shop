@@ -1,5 +1,5 @@
 <%@page import="entity.Result"%>
-<%@page import="service.Register"%>
+<%@page import="controller.Register"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

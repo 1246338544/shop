@@ -1,7 +1,7 @@
-<%@page import="service.Product"%>
+<%@page import="controller.Product"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="java.sql.ResultSet"%>
-<%@ page language="java" contentType="text/html; chaproductvoet=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,8 @@ body {
 </head>
 <body>
 
-	<%!Integer offset = 0;
+	<%
+	Integer offset = 0;
 	Integer limit = 10;%>
 	<%
 	LinkedList<Product> shopList = new LinkedList<>();
@@ -29,14 +30,14 @@ body {
 	
 	for (Object obj : (LinkedList<?>) session.getAttribute("shopList")) {
 		if (obj instanceof Product){
-			if(((Product)obj).getId().equals(Integer.valueOf(deleteItem)));
-			shopList.add((Product) obj);
+			if(deleteItem!=null && ((Product)obj).getId().equals(Integer.valueOf(deleteItem)));
+			else shopList.add((Product) obj);
 		}
 		else throw new Exception("未知错误，购物车页面出错");
 	}
 	%>
 	<header><%@ include file="../header.jsp" %></header>
-
+	
 	<div>
 		<h5>商品列表</h5>
 		<form action="" method="post">
@@ -72,8 +73,8 @@ body {
 				<%
 					}
 				%>
-
 			</ul>
+
 			<button type="submit">购买</button>
 		</form>
 		<form action="post" id="deleteItem"></form>
