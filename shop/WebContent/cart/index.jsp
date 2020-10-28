@@ -24,47 +24,44 @@ body {
 	<%
 	LinkedList<Product> shopList = new LinkedList<>();
 	String deleteItem = request.getParameter("delete");
-	
-	if (session.getAttribute("shopList") == null)
-		session.setAttribute("shopList", shopList);
-	
-	for (Object obj : (LinkedList<?>) session.getAttribute("shopList")) {
-		if (obj instanceof Product){
-			if(deleteItem!=null && ((Product)obj).getId().equals(Integer.valueOf(deleteItem)));
-			else shopList.add((Product) obj);
-		}
-		else throw new Exception("未知错误，购物车页面出错");
-	}
 	%>
 	<header><%@ include file="../header.jsp" %></header>
-	
+	<jsp:useBean id="cart" class="controller.Cart"></jsp:useBean>
+	  <jsp:setProperty name="cart" property="userName" value="<%=userName %>"/>
+	  <%
+	  if (deleteItem!=null){
+		  cart.setProductId(Integer.valueOf(deleteItem));
+		  cart.delete();
+	  }
+	  %>
 	<div>
 		<h5>商品列表</h5>
 		<form action="check.jsp" method="post">
 			<ul class="product-list">
 				<%
-					for (Product product : shopList) {
+					ResultSet rs = cart.selectAll();
+					while(rs.next()) {
 				%>
 				<li>
 
 					<table>
 						<tr>
 							<td>商品名</td>
-							<td><%=product.getName()%><input type="hidden" name="name"
-								value="<%=product.getName()%>"></td>
+							<td><%=rs.getString("name")%><input type="hidden" name="name"
+								value="<%=rs.getString("name")%>"></td>
 						</tr>
 						<tr>
 							<td>商品价格</td>
-							<td><%=product.getPrice()%><input type="hidden"
-								name="price" value="<%=product.getPrice()%>"></td>
+							<td><%=rs.getFloat("price")%><input type="hidden"
+								name="price" value="<%=rs.getFloat("price")%>"></td>
 						</tr>
 						<tr>
 							<td>数量</td>
 							<td><input type="number" min="1" max="200"
-								value=<%=product.getNumberOfProduct()%>></td>
+								value="1"></td>
 						</tr>
 						<tr>
-						     <td><button type="submit" form="deleteItem" value="<%=product.getId() %>" name="deleteItem">删除商品</button></td>
+						     <td><button type="submit" form="deleteItem" value="<%=rs.getInt("id") %>" name="deleteItem">删除商品</button></td>
 						</tr>
 					</table>
 

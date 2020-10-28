@@ -2,6 +2,7 @@ package controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -26,6 +27,7 @@ public class Cart {
 	private String userName;
 	private Integer productId;
 	private Float price;
+	public Connection con ;
 	public Float getPrice() {
 		return price;
 	}
@@ -35,7 +37,8 @@ public class Cart {
 		}
 		this.price = price;
 	}
-	public Cart() {};
+	public Cart() throws ClassNotFoundException, SQLException 
+	{con = Database.getConnection();};
 	public Integer insert() throws ClassNotFoundException, SQLException {
 		Connection conn = Database.getConnection();
 		String sql = "insert into cart (user_name, product_id) value(?, ?)";
@@ -65,6 +68,14 @@ public class Cart {
 		Integer affectedNumber = ps.executeUpdate();
 		conn.close();
 		return affectedNumber;
+	}
+	public ResultSet selectAll() throws ClassNotFoundException, SQLException {
+		
+		String sql = "select * from cart inner join product where cart.product_id = product.id and user_name = ?;";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, getUserName());
+		ResultSet rs = ps.executeQuery();
+		return rs;
 	}
 	public Integer update(Float price) throws ClassNotFoundException, SQLException {
 		this.setPrice(price);

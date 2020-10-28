@@ -8,7 +8,7 @@
 </head>
 <body>
   <form action="regist-check.jsp" method="post">
-    <table>
+    <table border="1">
       <tr>
         <td>用户名：</td>
         <td><input name="username" type="text" required="required"></td>

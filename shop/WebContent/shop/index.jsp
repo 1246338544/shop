@@ -27,6 +27,7 @@ body {
 
 </head>
 <body>
+    <header><%@include file="/header.jsp" %></header>
 	<jsp:useBean id="product" class="controller.Product"></jsp:useBean>
 	<%
 	Integer offset = 0;
@@ -39,16 +40,20 @@ body {
 		rs = product.getProduct(offset, limit);
 	else
 		rs = product.getProduct(offset, limit, search);
-	
+	if(request.getParameter("id")!=null){
 	Integer productId = Integer.valueOf(request.getParameter("id"));
 	Cart cart = new Cart();
 	cart.setProductId(productId);
 	if (session.getAttribute("userName") instanceof String)
-	{
+	  {
 		cart.setUserName((String)session.getAttribute("userName"));
+	  }
+		if(cart.insert()==1){
+			//TODO 提示
+		}
 	}
 	%>
-	<header><%@include file="/header.jsp" %></header>
+	
 	<form>
 		<input name="search" type="search" />
 		<button type='submit'>搜索</button>
