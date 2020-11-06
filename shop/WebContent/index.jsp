@@ -42,7 +42,7 @@
 </head>
 <body>
 <header> 让每个人都吃的起桃子 </header>
-    <form action="index.jsp" method="post">
+    <form action="welcome/index.jsp" method="post">
         <div class="loginbox">
             <div>
                 <div>用户名：
@@ -55,38 +55,12 @@
             <div>
                 <div>
                 	<button type="submit" name="submit" value="login">登录</button>
-                	<button type="submit" name="submit" value="register">注册</button>
+                	<a href="register">注册</a>
                 </div>
             </div>
         </div>
     </form>
-    <%
-    String submit = request.getParameter("submit");
-    String userName = request.getParameter("username");
-    String password = request.getParameter("password");
-    if ( submit == null);
-    else if (submit.equals("register")){response.sendRedirect("register");}
-    else {
-    %>
-    <jsp:useBean id="login" class="controller.Login" />
-    <% 
-        if(login.isLogin(userName, password.toCharArray()))
-        { 
-        	session.setAttribute("userName", userName);
-    	    response.sendRedirect("welcome"); 
-    	}
-        else
-        {
-    %>
-    <script>
-        alert("请检查你的的用户名和密码")
-    </script>
-    <% 
-
-        }
-    }
-    %>
-    <%=(session.getLastAccessedTime() - session.getCreationTime())/1000 + "s" %>
+  
     
 </body>
 </html>

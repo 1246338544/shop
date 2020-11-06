@@ -23,7 +23,7 @@ body {
 	Integer limit = 10;%>
 	<%
 	LinkedList<Product> shopList = new LinkedList<>();
-	String deleteItem = request.getParameter("delete");
+	String deleteItem = request.getParameter("deleteItem");
 	%>
 	<header><%@ include file="../header.jsp" %></header>
 	<jsp:useBean id="cart" class="controller.Cart"></jsp:useBean>
@@ -69,11 +69,12 @@ body {
 
 				<%
 					}
+					rs.close();
 				%>
 			</ul>
 			<button type="submit">购买</button>
 		</form>
-		<form action="post" id="deleteItem"></form>
+		<form action="./index.jsp" id="deleteItem" method="post"></form>
 		
 	</div>
 </body>

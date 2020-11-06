@@ -13,11 +13,11 @@ public class Login {
 	   java.lang.Class.forName(Database.DRIVE);
 	   this.connection = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);	
 	}
-	public boolean isLogin(String username,char[] password) throws SQLException {
-		String sql = "select count(username) from user where username=? and password=?";
+	public boolean isLogin(String userName,char[] password) throws SQLException {
+		String sql = "select count(name) from user where name=? and password=?";
 		PreparedStatement ps = connection.prepareStatement(sql);
-		if(username.length()<1||username.length()>6)return false;
-		ps.setString(1, username);
+		if(userName.length()<1||userName.length()>6)return false;
+		ps.setString(1, userName);
 		ps.setString(2, String.valueOf(password));
 		ResultSet rs = ps.executeQuery();
 		if(rs.next())		

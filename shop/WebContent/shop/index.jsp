@@ -27,7 +27,7 @@ body {
 
 </head>
 <body>
-    <header><%@include file="/header.jsp" %></header>
+    <header><%@include file="/header.jsp"%></header>
 	<jsp:useBean id="product" class="controller.Product"></jsp:useBean>
 	<%
 	Integer offset = 0;
@@ -48,8 +48,12 @@ body {
 	  {
 		cart.setUserName((String)session.getAttribute("userName"));
 	  }
-		if(cart.insert()==1){
-			//TODO 提示
+		if(Integer.valueOf(1).equals(cart.insert())){
+			%>
+			<script>
+			 alert("插入成功")
+			</script>
+			<% 
 		}
 	}
 	%>

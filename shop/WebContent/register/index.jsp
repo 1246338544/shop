@@ -5,6 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>注册账户</title>
+<style>
+form {
+  text-align: right;
+  margin-left:50%;
+}
+table {
+ border:0;
+}
+</style>
 </head>
 <body>
   <form action="regist-check.jsp" method="post">
@@ -18,7 +27,7 @@
         <td><input name="password" type="password" required="required"></td>
       </tr>
       <tr>
-        <td>确认密码</td>
+        <td>确认密码：</td>
         <td><input name="repeatPassword" type="password" required="required"></td>
       <tr>
       <tr>
