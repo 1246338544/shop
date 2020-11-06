@@ -28,9 +28,11 @@ body {
 	<header><%@ include file="../header.jsp" %></header>
 	<jsp:useBean id="cart" class="controller.Cart"></jsp:useBean>
 	  <jsp:setProperty name="cart" property="userName" value="<%=userName %>"/>
+	  <%=userName %>
 	  <%
 	  if (deleteItem!=null){
 		  cart.setProductId(Integer.valueOf(deleteItem));
+		  out.print(deleteItem);
 		  cart.delete();
 	  }
 	  %>
@@ -61,7 +63,7 @@ body {
 								value="1"></td>
 						</tr>
 						<tr>
-						     <td><button type="submit" form="deleteItem" value="<%=rs.getInt("id") %>" name="deleteItem">删除商品</button></td>
+						     <td><button type="submit" form="deleteItem" value="<%=rs.getInt("product_id") %>" name="deleteItem">删除商品</button></td>
 						</tr>
 					</table>
 
