@@ -30,10 +30,13 @@ body {
 	  <%
 	  cart.setUserName((String)session.getAttribute("userName"));
 	  if (deleteItem!=null && userName!=null){
-		  
 		  cart.setProductId(Integer.valueOf(deleteItem));
-		  out.print(deleteItem);
 		  cart.delete();
+	  }
+	  String number =request.getParameter("number");
+	  if (number != null){
+		  cart.update(Integer.valueOf(number),Integer.valueOf(request.getParameter("product_id")));
+		  System.out.print(number);
 	  }
 	  %>
 	<div>
@@ -45,29 +48,28 @@ body {
 					while(rs.next()) {
 				%>
 				<li>
-					
+					<form action="./index.jsp" method="get">
+					<input type="hidden" name="product_id" value="<%= rs.getInt("product_id") %>"/>
 					<table>
 						<tr>
 							<td>商品名</td>
-							<td><%=rs.getString("name")%><input type="hidden" name="name"
-								value="<%=rs.getString("name")%>"></td>
+							<td><%=rs.getString("name")%></td>
 						</tr>
 						<tr>
 							<td>商品价格</td>
-							<td><%=rs.getFloat("price")%><input type="hidden"
-								name="price" value="<%=rs.getFloat("price")%>"></td>
+							<td><%=rs.getFloat("price")%></td>
 						</tr>
 						<tr>
 							<td>数量</td>
-							<td><input type="number" min="1" max="200"
+							<td><input name="number" type="number" min="1" max="200"
 								value="<%=rs.getInt("number") %>"></td>
 						</tr>
 						<tr>
 						     <td><button type="submit" form="deleteItem" value="<%=rs.getInt("product_id") %>" name="deleteItem">删除商品</button></td>
-						     <td><button>修改商品数量</button></td>
+						     <td><button type="submit">修改商品数量</button></td>
 						</tr>
 					</table>
-
+					</form>
 				</li>
 
 				<%

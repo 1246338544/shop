@@ -25,6 +25,25 @@ public class Cart {
 		if(productId == null) throw new NullPointerException();
 		this.productId = productId;
 	}
+	private Integer number;
+	public Integer getNumber() {
+		if (number == null) {
+			throw new NullPointerException();
+		}
+		return number;
+	}
+	public void setNumber(Integer number) {
+		if (number == null) {
+			throw new NullPointerException();
+		}
+		this.number = number;
+	}
+	public Connection getCon() {
+		return con;
+	}
+	public void setCon(Connection con) {
+		this.con = con;
+	}
 	private String userName;
 	private Integer productId;
 	private Float price;
@@ -68,10 +87,11 @@ public class Cart {
 	}
 	public Integer update() throws ClassNotFoundException, SQLException {
 		Connection conn = Database.getConnection();
-		String sql = "update cart set product_id = ? and user_name = ?";
+		String sql = "update cart set number=? where product_id = ? and user_name = ?";
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setString(1, this.getUserName());
+		ps.setString(3, this.getUserName());
 		ps.setInt(2,this.getProductId());
+		ps.setInt(1, this.getNumber());
 		Integer affectedNumber = ps.executeUpdate();
 		conn.close();
 		return affectedNumber;
@@ -81,12 +101,12 @@ public class Cart {
 		String sql = "select * from cart inner join product where cart.product_id = product.id and user_name = ?;";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, getUserName());
-		System.out.print(getUserName()+"userName");
 		ResultSet rs = ps.executeQuery();
 		return rs;
 	}
-	public Integer update(Float price) throws ClassNotFoundException, SQLException {
-		this.setPrice(price);
+	public Integer update(Integer number,Integer productId) throws ClassNotFoundException, SQLException {
+		this.setNumber(number);
+		this.setProductId(productId);
 		return this.update();
 	}
 }

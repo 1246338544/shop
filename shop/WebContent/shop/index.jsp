@@ -34,7 +34,7 @@ body {
 	Integer limit = 10;
 	%>
 	<%
-	String search = request.getParameter("search");
+	String search = request.getParameter("search_query");
 	ResultSet rs = null;
 	if (search == null)
 		rs = product.getProduct(offset, limit);
@@ -59,7 +59,7 @@ body {
 	%>
 	
 	<form>
-		<input name="search" type="search" />
+		<input name="search_query" type="search" />
 		<button type='submit'>搜索</button>
 	</form>
 	<div>
