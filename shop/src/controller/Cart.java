@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 
 
@@ -45,9 +46,15 @@ public class Cart {
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, this.getUserName());
 		ps.setInt(2, this.getProductId());
+		try {
 		Integer affectedNumber = ps.executeUpdate();
-		conn.close();
 		return affectedNumber;
+		}catch (SQLIntegrityConstraintViolationException e) {
+			
+		}finally {
+			conn.close();
+		}
+		return -1;
 	}
 	public Integer delete() throws ClassNotFoundException, SQLException {
 		Connection conn = Database.getConnection();
@@ -74,6 +81,7 @@ public class Cart {
 		String sql = "select * from cart inner join product where cart.product_id = product.id and user_name = ?;";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, getUserName());
+		System.out.print(getUserName()+"userName");
 		ResultSet rs = ps.executeQuery();
 		return rs;
 	}

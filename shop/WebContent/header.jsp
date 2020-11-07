@@ -31,8 +31,8 @@
 	%> 
 	<ul class="header">
 		<li><%=userName%></li>
-		<li><a href="../cart">购物车</a></li>
 		<li><a href="../shop">商城</a></li>
+		<li><a href="../cart">购物车</a></li>
 		<li style="margin-left: 75%;"><a
 			href="/shop/header.jsp?logout=true"><button>退出</button></a></li>
 	</ul>

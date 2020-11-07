@@ -27,10 +27,10 @@ body {
 	%>
 	<header><%@ include file="../header.jsp" %></header>
 	<jsp:useBean id="cart" class="controller.Cart"></jsp:useBean>
-	  <jsp:setProperty name="cart" property="userName" value="<%=userName %>"/>
-	  <%=userName %>
 	  <%
-	  if (deleteItem!=null){
+	  cart.setUserName((String)session.getAttribute("userName"));
+	  if (deleteItem!=null && userName!=null){
+		  
 		  cart.setProductId(Integer.valueOf(deleteItem));
 		  out.print(deleteItem);
 		  cart.delete();
@@ -38,14 +38,14 @@ body {
 	  %>
 	<div>
 		<h5>商品列表</h5>
-		<form action="check.jsp" method="post">
+		
 			<ul class="product-list">
 				<%
 					ResultSet rs = cart.selectAll();
 					while(rs.next()) {
 				%>
 				<li>
-
+					
 					<table>
 						<tr>
 							<td>商品名</td>
@@ -60,10 +60,11 @@ body {
 						<tr>
 							<td>数量</td>
 							<td><input type="number" min="1" max="200"
-								value="1"></td>
+								value="<%=rs.getInt("number") %>"></td>
 						</tr>
 						<tr>
 						     <td><button type="submit" form="deleteItem" value="<%=rs.getInt("product_id") %>" name="deleteItem">删除商品</button></td>
+						     <td><button>修改商品数量</button></td>
 						</tr>
 					</table>
 
@@ -75,7 +76,7 @@ body {
 				%>
 			</ul>
 			<button type="submit">购买</button>
-		</form>
+		
 		<form action="./index.jsp" id="deleteItem" method="post"></form>
 		
 	</div>
