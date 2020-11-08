@@ -1,25 +1,36 @@
+create table cart
+(
+	id int auto_increment
+		primary key,
+	product_id int not null,
+	user_name varchar(255) not null,
+	number int unsigned default '1' not null,
+	constraint cart_pk
+		unique (product_id, user_name)
+);
 
-#create database shop;
-use shop;
-CREATE TABLE user (
-    name NVARCHAR(255) PRIMARY KEY,
-    password VARCHAR(255)
-)  DEFAULT CHARACTER SET UTF8MB4;
-CREATE TABLE product (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name NVARCHAR(255) NOT NULL,
-    price FLOAT NOT NULL,
-    number INT UNSIGNED NOT NULL
-)  DEFAULT CHARACTER SET UTF8MB4;
-CREATE TABLE order_shop (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT REFERENCES user (name),
-    product_id INT REFERENCES product (id),
-    number INT UNSIGNED NOT NULL
-)  DEFAULT CHARACTER SET UTF8MB4; 
-CREATE TABLE cart (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id INT NOT NULL REFERENCES product (id),
-    user_name VARCHAR(255) NOT NULL REFERENCES user (user_name),
-    number INT UNSIGNED NOT NULL
-)  DEFAULT CHARACTER SET UTF8MB4;
+create table order_shop
+(
+	id int auto_increment
+		primary key,
+	user_id int null,
+	product_id int null,
+	number int unsigned not null
+);
+
+create table product
+(
+	id int auto_increment
+		primary key,
+	name varchar(255) charset utf8 not null,
+	price float not null,
+	number int unsigned not null
+);
+
+create table user
+(
+	name varchar(255) charset utf8 not null
+		primary key,
+	password varchar(255) null
+);
+
