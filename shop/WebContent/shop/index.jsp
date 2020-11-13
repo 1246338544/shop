@@ -1,3 +1,4 @@
+<%@page import="java.awt.Button"%>
 <%@page import="controller.Cart"%>
 <%@page import="controller.Product"%>
 <%@page import="java.util.LinkedList"%>
@@ -9,22 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>购物</title>
-<style type="text/css">
-.product-list li {
-	list-style: none;
-	display: inline;
-	float: left;
-	width: 230px;
-	height: 315px;
-}
-
-body {
-	width: 1190px;
-	height: 400px;
-	margin: auto;
-}
-</style>
-
+<link rel="stylesheet" type="text/css" href="../css/body.css">
 </head>
 <body>
     <header><%@include file="/header.jsp"%></header>
@@ -91,6 +77,7 @@ body {
 
 			<%
 				}
+			rs.close();
 			%>
 
 		</ul>

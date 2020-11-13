@@ -1,7 +1,7 @@
 package controller;
 
 
-import java.net.PasswordAuthentication;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ public class Register {
 		if (username.isBlank() || password.length == 0 || repeatPassword.length == 0) {
 			return new Result("用户名和密码不能为空或者只含有空格",false);
 		}
-		if (username.length()<1||username.length()>6) return new Result("用户名长度1~6位",false);
+		if (username.length()<1||username.length()>20) return new Result("用户名长度1~20位",false);
 
 		if (password.length != repeatPassword.length) return new Result("密码长度不一致",false);
 		for (int i = 0; i < password.length; i++) {

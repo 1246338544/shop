@@ -24,7 +24,7 @@ table {
       </tr>
       <tr>
         <td>密码：</td>
-        <td><input name="password" type="password" required="required"></td>
+        <td><input name="password" type="password" required="required" maxlength="20"></td>
       </tr>
       <tr>
         <td>确认密码：</td>

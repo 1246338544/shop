@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+body {
+	width: 1190px;
+	height: 400px;
+	margin: auto;
+}
+
+.product-list li {
+	list-style: none;
+	display: inline;
+}

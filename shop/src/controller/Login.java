@@ -13,10 +13,10 @@ public class Login {
 	   java.lang.Class.forName(Database.DRIVE);
 	   this.connection = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);	
 	}
-	public boolean isLogin(String userName,char[] password) throws SQLException {
+	public boolean isLogin(String userName,char[] password) throws Exception {
 		String sql = "select count(name) from user where name=? and password=?";
 		PreparedStatement ps = connection.prepareStatement(sql);
-		if(userName.length()<1||userName.length()>6)return false;
+		if(userName.length()<1||userName.length()>20) throw new Exception("用户名不得为空或者长于20字符");
 		ps.setString(1, userName);
 		ps.setString(2, String.valueOf(password));
 		ResultSet rs = ps.executeQuery();

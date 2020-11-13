@@ -44,7 +44,7 @@ body {
 		
 			<ul class="product-list">
 				<%
-					ResultSet rs = cart.selectAll();
+					ResultSet rs = cart.selectAllUnchecked();
 					while(rs.next()) {
 				%>
 				<li>
@@ -77,10 +77,12 @@ body {
 					rs.close();
 				%>
 			</ul>
-			<button type="submit">购买</button>
+			<button type="button" id='checkout'>购买</button>
 		
 		<form action="./index.jsp" id="deleteItem" method="post"></form>
 		
 	</div>
+	<script type="text/javascript" src="../js/cart.js">
+	</script>
 </body>
 </html>

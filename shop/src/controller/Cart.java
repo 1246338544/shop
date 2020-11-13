@@ -96,9 +96,9 @@ public class Cart {
 		conn.close();
 		return affectedNumber;
 	}
-	public ResultSet selectAll() throws ClassNotFoundException, SQLException {
-		
-		String sql = "select * from cart inner join product where cart.product_id = product.id and user_name = ?;";
+
+	public ResultSet selectAllUnchecked() throws ClassNotFoundException, SQLException {
+		String sql = "select * from cart inner join product where cart.product_id = product.id and user_name = ? and order_id is null;";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, getUserName());
 		ResultSet rs = ps.executeQuery();
