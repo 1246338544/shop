@@ -9,11 +9,10 @@
 </head>
 <body>
 	<%
-    String submit = request.getParameter("submit");
     String userName = request.getParameter("username");
     String password = request.getParameter("password");
-    if ( submit == null);
-    else {
+    
+     
     %>
 	<jsp:useBean id="login" class="controller.Login" />
 	<% 
@@ -35,10 +34,11 @@
         	%>
         	<script>
         	alert('<%=e.getMessage()%>')
+        	window.location.href = "../index.jsp"
         	</script>
         	<% 
         }
-    }
+    
     %>
 	欢迎光临,五秒后自动跳转到购物页面,立即跳转请点击
 	<a href="../shop">跳转</a>
