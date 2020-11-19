@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.Statement;
 
 
 
@@ -71,6 +72,7 @@ public class Cart {
 		}catch (SQLIntegrityConstraintViolationException e) {
 			
 		}finally {
+			ps.close();
 			conn.close();
 		}
 		return -1;
@@ -82,6 +84,7 @@ public class Cart {
 		ps.setString(1, this.getUserName());
 		ps.setInt(2, this.getProductId());
 		Integer affectedNumber = ps.executeUpdate();
+		ps.close();
 		conn.close();
 		return affectedNumber;
 	}
@@ -93,6 +96,7 @@ public class Cart {
 		ps.setInt(2,this.getProductId());
 		ps.setInt(1, this.getNumber());
 		Integer affectedNumber = ps.executeUpdate();
+		ps.close();
 		conn.close();
 		return affectedNumber;
 	}
@@ -108,5 +112,17 @@ public class Cart {
 		this.setNumber(number);
 		this.setProductId(productId);
 		return this.update();
+	}
+	
+	public Integer checkout() throws SQLException {
+		
+		String sql = "update cart set order_id = uuid_short() where user_name = ? and order_id is null;";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.executeUpdate();
+		Statement s = con.createStatement();
+		s.executeUpdate("");
+		
+		
+		return null;
 	}
 }
