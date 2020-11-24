@@ -5,12 +5,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
-	public static final String USERNAME="joker";
-	public static final String PASSWORD="952727aA~";
-	public static final String URL="jdbc:mysql://localhost/shop";
-	public static final String DRIVE = "com.mysql.cj.jdbc.Driver";
-	public static Connection getConnection() throws SQLException, ClassNotFoundException {
-		java.lang.Class.forName(Database.DRIVE);
-		return DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);	
+	public final String USERNAME="joker";
+	public final String PASSWORD="952727aA~";
+	public final String URL="jdbc:mysql://localhost/shop?serverTimezone=UTC";
+	public final String DRIVE = "com.mysql.cj.jdbc.Driver";
+	public Connection con;
+	public Database() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated constructor stub
+		java.lang.Class.forName(DRIVE);
+		con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+	}
+	public Connection getConnection() throws SQLException, ClassNotFoundException {
+		return con;
 	}
 }

@@ -59,11 +59,11 @@ public class Cart {
 		this.price = price;
 	}
 	public Cart() throws ClassNotFoundException, SQLException 
-	{con = Database.getConnection();};
+	{con = new Database().getConnection();};
 	public Integer insert() throws ClassNotFoundException, SQLException {
-		Connection conn = Database.getConnection();
+		
 		String sql = "insert into cart (user_name, product_id) value(?, ?)";
-		PreparedStatement ps = conn.prepareStatement(sql);
+		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, this.getUserName());
 		ps.setInt(2, this.getProductId());
 		try {
@@ -73,31 +73,31 @@ public class Cart {
 			
 		}finally {
 			ps.close();
-			conn.close();
+			con.close();
 		}
 		return -1;
 	}
 	public Integer delete() throws ClassNotFoundException, SQLException {
-		Connection conn = Database.getConnection();
+		
 		String sql = "delete from cart where user_name = ? and product_id = ?";
-		PreparedStatement ps = conn.prepareStatement(sql);
+		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, this.getUserName());
 		ps.setInt(2, this.getProductId());
 		Integer affectedNumber = ps.executeUpdate();
 		ps.close();
-		conn.close();
+		con.close();
 		return affectedNumber;
 	}
 	public Integer update() throws ClassNotFoundException, SQLException {
-		Connection conn = Database.getConnection();
+		
 		String sql = "update cart set number=? where product_id = ? and user_name = ?";
-		PreparedStatement ps = conn.prepareStatement(sql);
+		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(3, this.getUserName());
 		ps.setInt(2,this.getProductId());
 		ps.setInt(1, this.getNumber());
 		Integer affectedNumber = ps.executeUpdate();
 		ps.close();
-		conn.close();
+		con.close();
 		return affectedNumber;
 	}
 
@@ -106,6 +106,7 @@ public class Cart {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, getUserName());
 		ResultSet rs = ps.executeQuery();
+		con.close();
 		return rs;
 	}
 	public Integer update(Integer number,Integer productId) throws ClassNotFoundException, SQLException {
@@ -116,13 +117,10 @@ public class Cart {
 	
 	public Integer checkout() throws SQLException {
 		
-		String sql = "update cart set order_id = uuid_short() where user_name = ? and order_id is null;";
+		String sql = "set @uuid = uuid_short();set @date = now();update cart set order_id = @uuid, date = @date where user_name = ? and order_id is null;";
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.executeUpdate();
-		Statement s = con.createStatement();
-		s.executeUpdate("");
-		
-		
-		return null;
+		int i = ps.executeUpdate();
+		con.close();
+		return i;
 	}
 }

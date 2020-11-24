@@ -10,8 +10,7 @@ public class Login {
 	
 	private Connection connection = null;
 	public Login() throws SQLException, ClassNotFoundException {
-	   java.lang.Class.forName(Database.DRIVE);
-	   this.connection = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);	
+	  this.connection = new Database().getConnection();
 	}
 	public boolean isLogin(String userName,char[] password) throws Exception {
 		String sql = "select count(name) from user where name=? and password=?";

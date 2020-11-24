@@ -47,8 +47,7 @@ public class Product implements Serializable{
 	}
 	private Connection connection = null;
 	public Product() throws SQLException, ClassNotFoundException {
-	   java.lang.Class.forName(Database.DRIVE);
-	   this.connection = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);	
+		this.connection = new Database().getConnection();
 	}
 	public ResultSet getProduct(Integer offset,Integer limit) throws SQLException {
 		String sql = "select id,name,price from product limit 10 offset ?";
