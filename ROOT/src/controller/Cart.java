@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.sql.Statement;
 
 
 
@@ -73,7 +72,6 @@ public class Cart {
 			
 		}finally {
 			ps.close();
-			con.close();
 		}
 		return -1;
 	}
@@ -85,7 +83,6 @@ public class Cart {
 		ps.setInt(2, this.getProductId());
 		Integer affectedNumber = ps.executeUpdate();
 		ps.close();
-		con.close();
 		return affectedNumber;
 	}
 	public Integer update() throws ClassNotFoundException, SQLException {
@@ -97,7 +94,6 @@ public class Cart {
 		ps.setInt(1, this.getNumber());
 		Integer affectedNumber = ps.executeUpdate();
 		ps.close();
-		con.close();
 		return affectedNumber;
 	}
 
@@ -106,7 +102,6 @@ public class Cart {
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, getUserName());
 		ResultSet rs = ps.executeQuery();
-		con.close();
 		return rs;
 	}
 	public Integer update(Integer number,Integer productId) throws ClassNotFoundException, SQLException {
@@ -120,7 +115,6 @@ public class Cart {
 		String sql = "set @uuid = uuid_short();set @date = now();update cart set order_id = @uuid, date = @date where user_name = ? and order_id is null;";
 		PreparedStatement ps = con.prepareStatement(sql);
 		int i = ps.executeUpdate();
-		con.close();
 		return i;
 	}
 }

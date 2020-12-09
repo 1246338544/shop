@@ -11,10 +11,8 @@
 	<%
     String userName = request.getParameter("username");
     String password = request.getParameter("password");
-    
-     
     %>
-	<jsp:useBean id="login" class="controller.Login" />
+	<jsp:useBean id="login" class="entity.Login" />
 	<% 
     try{
 	        if(login.isLogin(userName, password.toCharArray()))

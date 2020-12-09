@@ -5,6 +5,7 @@ create table cart
 	product_id int not null,
 	user_name varchar(255) not null,
 	number int unsigned default '1' not null,
+	order_id bigint unsigned ,
 	constraint cart_pk
 		unique (product_id, user_name)
 );

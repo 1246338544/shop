@@ -74,7 +74,7 @@ body {
 
 				<%
 					}
-					rs.close();
+				
 				%>
 			</ul>
 			<button type="button" id='checkout'>购买</button>

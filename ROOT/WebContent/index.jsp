@@ -42,7 +42,7 @@
 </head>
 <body>
 <header> 让每个人都吃的起桃子 </header>
-    <form action="welcome/index.jsp" method="post">
+    <form action="welcome" method="post">
         <div class="loginbox">
             <div>
                 <div>用户名：
