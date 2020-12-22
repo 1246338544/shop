@@ -21,21 +21,11 @@
 </style>
 </head>
 <body>
-	<%
-	String userName = (String)session.getAttribute("userName");
-	if ("true".equals(request.getParameter("logout")) || userName == null) {
-		session.removeAttribute("userName");
-		response.sendRedirect("/");
-	}else{
-	
-	%> 
 	<ul class="header">
-		<li><%=userName%></li>
 		<li><a href="../shop">商城</a></li>
 		<li><a href="../cart">购物车</a></li>
-		<li style="margin-left: 75%;"><a
-			href="/header.jsp?logout=true"><button>退出</button></a></li>
+		<li style="margin-left: 75%;">
+		<a href="/logout"><button>退出</button></a></li>
 	</ul>
-	<% }%>
 </body>
 </html>

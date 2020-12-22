@@ -1,4 +1,4 @@
-package entity;
+package dao;
 
 public class Result{
 	private String message;

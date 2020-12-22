@@ -21,14 +21,9 @@
 
 	<%
 		ArrayList<Product> products = Product.cast(request.getAttribute("products"));
+		if(products == null) products = new ArrayList<>();
 	%>
-	<script>
-		alert("插入成功")
-	</script>
-	<%
-		
-	%>
-
+	<div hidden="false">测试</div>
 	<form>
 		<input name="search_query" type="search" />
 		<button type='submit'>搜索</button>
@@ -38,14 +33,15 @@
 		<ul class="product-list">
 			<%
 				for (Product p : products) {
+					request.setAttribute("p", p);
 			%>
 			<li>
 				<form method="post" Action="/Shop">
 					<table>
 						<tr>
 							<td>商品名</td>
-							<td>${product.name}<input type="hidden" name="name"
-								value="${product.name}"></td>
+							<td>${p.name}<input type="hidden" name="name"
+								value="${p.name}"></td>
 						</tr>
 						<tr>
 							<td>商品价格</td>

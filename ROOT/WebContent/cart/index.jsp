@@ -29,7 +29,7 @@ body {
 	<jsp:useBean id="cart" class="controller.Cart"></jsp:useBean>
 	  <%
 	  cart.setUserName((String)session.getAttribute("userName"));
-	  if (deleteItem!=null && userName!=null){
+	  if (deleteItem!=null && session.getAttribute("userName")!=null){
 		  cart.setProductId(Integer.valueOf(deleteItem));
 		  cart.delete();
 	  }

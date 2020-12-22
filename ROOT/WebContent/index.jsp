@@ -42,7 +42,8 @@
 </head>
 <body>
 <header> 让每个人都吃的起桃子 </header>
-    <form action="welcome" method="post">
+    <form action="/Login" method="post">
+    <div>${checkLogin}</div>
         <div class="loginbox">
             <div>
                 <div>用户名：
@@ -54,7 +55,7 @@
             </div>
             <div>
                 <div>
-                	<button type="submit" name="submit" value="login">登录</button>
+                	<button type="submit" value="login">登录</button>
                 	<a href="register">注册</a>
                 </div>
             </div>
