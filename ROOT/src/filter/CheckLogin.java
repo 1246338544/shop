@@ -57,7 +57,7 @@ public class CheckLogin implements Filter {
 				request.setAttribute("checkLogin", "你还未登录");
 				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			} else {
-				
+				chain.doFilter(request, response);
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-<%@page import="controller.Product"%>
+<%@page import="dao.Product"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
@@ -26,7 +26,7 @@ body {
 	String deleteItem = request.getParameter("deleteItem");
 	%>
 	<header><%@ include file="../header.jsp" %></header>
-	<jsp:useBean id="cart" class="controller.Cart"></jsp:useBean>
+	<jsp:useBean id="cart" class="dao.Cart"></jsp:useBean>
 	  <%
 	  cart.setUserName((String)session.getAttribute("userName"));
 	  if (deleteItem!=null && session.getAttribute("userName")!=null){

@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import java.io.Serializable;
 import java.sql.Connection;

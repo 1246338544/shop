@@ -1,5 +1,5 @@
 <%@page import="dao.Result"%>
-<%@page import="controller.Register"%>
+<%@page import="dao.Register"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

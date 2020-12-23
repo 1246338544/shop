@@ -1,4 +1,4 @@
-<%@page import="controller.Cart"%>
+<%@page import="dao.Cart"%>
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -11,7 +11,7 @@
 </head>
 <body>
 	<header><%@include file="/header.jsp" %></header>
-	<jsp:useBean id="cart" class='controller.Cart' scope="session">
+	<jsp:useBean id="cart" class='dao.Cart' scope="session">
 		<jsp:setProperty property="userName" name="cart"
 			value='<%=(String) session.getAttribute(\"userName\")%>' />
 	</jsp:useBean>

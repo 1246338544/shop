@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.Cart;
+import dao.Product;
 import service.ProductService;
 
 /**
@@ -33,17 +35,7 @@ public class Shop extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+		
 		Integer offset = 0;
 		Integer limit = 10;
 		offset = request.getParameter("offset") != null ? Integer.valueOf(request.getParameter("offset")) : 0;
@@ -65,15 +57,24 @@ public class Shop extends HttpServlet {
 				Object userName = request.getSession().getAttribute("userName");
 				if (userName instanceof String) {
 					cart.setUserName((String) userName);
-					request.setAttribute("cartInsertResult", Integer.valueOf(1).equals(cart.insert()) ? "hidden" : false);
-
+					request.setAttribute("cartInsertResult", Integer.valueOf(1).equals(cart.insert()) ? "hidden" : null);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
+		}else {
+			request.setAttribute("cartInsertResult", "hidden");
 		}
+		request.getRequestDispatcher("/shop/index.jsp").forward(request, response);
+	}
 
-		request.getRequestDispatcher("/shop").forward(request, response);
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }

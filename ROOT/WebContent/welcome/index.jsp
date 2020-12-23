@@ -9,8 +9,8 @@
 </head>
 <body>
 	欢迎光临,五秒后自动跳转到购物页面,立即跳转请点击
-	<a href="../shop">跳转</a>
-	<script>
+	<a href="../Shop">跳转</a>
+	<script type="text/javascript">
  setTimeout(()=>{window.location.href = "../shop"},5000)
 </script>
 </body>

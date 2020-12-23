@@ -3,7 +3,7 @@ package service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import controller.Product;
+import dao.Product;
 
 public class ProductService {
 	private ProductService() {
