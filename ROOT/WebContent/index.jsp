@@ -38,30 +38,39 @@
     .loginbox div input{
       height: 30px;
     }
+    /*dfds*/
+    #login-message {
+      color:red;
+    }
+    body {
+    	background-color: #FCFCE8;
+    }
 </style>
 </head>
 <body>
 <header> 让每个人都吃的起桃子 </header>
     <form action="/Login" method="post">
-    <div>${checkLogin}</div>
+    <div id='login-message'>${checkLogin}</div>
+    <font face=""></font>
         <div class="loginbox">
+            
             <div>
+            
                 <div>用户名：
-                <input name="username"/></div>
+                <input name="username" placeholder="请输入用户名"/></div>
             </div>
             <div>
                 <div>密码：
-                <input name="password" type="password"/></div>
+                <input name="password" type="password" placeholder='请输入登录密码'/></div>
             </div>
             <div>
                 <div>
                 	<button type="submit" value="login">登录</button>
-                	<a href="register">注册</a>
+                	<a href="register"><button type='button'>注册</button></a>
+                	<a href='change/password'>修改密码</a>
                 </div>
             </div>
         </div>
     </form>
-  
-    
 </body>
 </html>

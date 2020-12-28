@@ -22,10 +22,11 @@
 </head>
 <body>
 	<ul class="header">
+		<li>用户名:${empty userName?'请登录':userName}</li>
 		<li><a href="../Shop">商城</a></li>
 		<li><a href="../cart">购物车</a></li>
 		<li style="margin-left: 75%;">
-		<a href="/logout"><button>退出</button></a></li>
+		<a href="/Logout"><button>退出</button></a></li>
 	</ul>
 </body>
 </html>

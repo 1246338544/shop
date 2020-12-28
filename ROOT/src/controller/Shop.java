@@ -57,13 +57,13 @@ public class Shop extends HttpServlet {
 				Object userName = request.getSession().getAttribute("userName");
 				if (userName instanceof String) {
 					cart.setUserName((String) userName);
-					request.setAttribute("cartInsertResult", Integer.valueOf(1).equals(cart.insert()) ? "hidden" : null);
+					request.setAttribute("cartInsertResult", Integer.valueOf(1).equals(cart.insert()) ? true : false);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
 		}else {
-			request.setAttribute("cartInsertResult", "hidden");
+			request.setAttribute("cartInsertResult", false);
 		}
 		request.getRequestDispatcher("/shop/index.jsp").forward(request, response);
 	}

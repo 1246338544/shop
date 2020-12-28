@@ -28,7 +28,7 @@
 		<input name="search_query" type="search" />
 		<button type='submit'>搜索</button>
 	</form>
-	<div align="center" ${ cartInsertResult }>商品已添加到购物车</div>
+	<div align="center" ${ !cartInsertResult?'hidden':null }>商品已添加到购物车</div>
 	<div>
 		<h5>商品列表</h5>
 		<ul class="product-list">

@@ -13,7 +13,6 @@ public class Database {
 	public Connection con;
 	public Database() throws ClassNotFoundException, SQLException {
 		Class.forName(DRIVE);
-
 		con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 	}
 	public Connection getConnection() throws SQLException, ClassNotFoundException {

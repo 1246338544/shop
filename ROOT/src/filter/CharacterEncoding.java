@@ -7,14 +7,13 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 
 /**
  * Servlet Filter implementation class CharacterEncoding
  */
-@WebFilter("/*")
-public class CharacterEncoding implements Filter {
 
+public class CharacterEncoding implements Filter {
+	private String characterEncoding ;
     /**
      * Default constructor. 
      */
@@ -33,8 +32,8 @@ public class CharacterEncoding implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding(characterEncoding);
+		response.setCharacterEncoding(characterEncoding);
 		chain.doFilter(request, response);
 	}
 
@@ -42,7 +41,7 @@ public class CharacterEncoding implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+		characterEncoding = fConfig.getInitParameter("characterEncoding");
 	}
 
 }

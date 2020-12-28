@@ -14,8 +14,13 @@ table {
  border:0;
 }
 </style>
+<link rel="stylesheet" type="text/css" href="../css/body.css">
 </head>
 <body>
+	<header>
+		<jsp:include page="/header.jsp"><jsp:param value="flase"
+				name='logout' /></jsp:include>
+	</header>
   <form action="regist-check.jsp" method="post">
     <table border="1">
       <tr>

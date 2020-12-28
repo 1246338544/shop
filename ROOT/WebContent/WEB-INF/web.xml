@@ -4104,6 +4104,18 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <filter>
+    <filter-name>characterEncoding</filter-name>
+    <filter-class>filter.CharacterEncoding</filter-class>
+    <init-param>
+      <param-name>characterEncoding</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>characterEncoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
     <filter-name>checkLogin</filter-name>
     <filter-class>filter.CheckLogin</filter-class>
   </filter>

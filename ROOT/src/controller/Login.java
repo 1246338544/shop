@@ -25,7 +25,6 @@ public class Login extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		// TODO Auto-generated method stub
 		super.init();
 	}
 	service.Login login;

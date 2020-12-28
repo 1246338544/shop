@@ -2,7 +2,6 @@ package filter;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.HashMap;
 
 import javax.servlet.Filter;
@@ -41,7 +40,6 @@ public class CheckLogin implements Filter {
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		Date date = new Date();
 		HttpServletRequest hsr = null;
 		if(request instanceof HttpServletRequest) {
 			hsr = (HttpServletRequest) request;
@@ -49,7 +47,10 @@ public class CheckLogin implements Filter {
 			request.getRequestDispatcher("/error").forward(request, response);
 			return;
 		}
-		if (hsr.getRequestURI().equals("/index.jsp") || hsr.getRequestURI().equals("/Login") || hsr.getRequestURI().contains("register"))
+		System.out.println(hsr.getRequestURI());
+		if (hsr.getRequestURI().equals("/index.jsp") ||
+				hsr.getRequestURI().equals("/Login") ||
+				hsr.getRequestURI().contains("register"))
 			chain.doFilter(request, response);
 		else {
 			Date date1 = userSessionId.get(hsr.getRequestedSessionId());
